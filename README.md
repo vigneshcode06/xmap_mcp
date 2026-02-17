@@ -1,50 +1,23 @@
-# 🛰️ XMAP — MCP Powered AI Nmap Agent
+# XMAP
 
-XMAP is an AI-powered Nmap automation tool built using a custom  
-Model Context Protocol (MCP) architecture.
-
-It allows you to chat in natural language and let an AI agent run Nmap scans,
-analyze results, and answer questions — all through a CLI interface.
-
-Think of XMAP as:
-
-ChatGPT + Nmap + MCP + Automation
+XMAP is a CLI-based AI-powered Nmap automation tool built using an MCP-style architecture.  
+It allows you to chat with an AI and run Nmap scans automatically.
 
 ---
 
-## 🚀 Features
+## What This Tool Does
 
-- Natural language scanning  
-- AI-controlled tool execution  
-- MCP-based client/server architecture  
-- Multiple scan types  
-- Ask questions about previous scans  
-- Chat mode  
-- API key stored safely in env file  
+- Run Nmap scans using natural language
+- Use AI to decide which scan to run
+- Execute scans automatically
+- Show results in terminal
+- Ask follow-up questions like open ports
 
 ---
 
-## 🧠 Architecture
+## Folder Structure
 
-User  
-↓  
-AI Client (ai_client.py)  
-↓  
-MCP Server (mcp_server.py)  
-↓  
-Tools (tools.py)  
-↓  
-Nmap / OS Commands  
-
-AI decides WHAT to do  
-MCP decides HOW to call tools  
-Tools execute the real commands  
-
----
-
-## 📁 Project Structure
-
-xmap_mcp/  
+xmap_mcp/
 ├── ai_client.py  
 ├── mcp_server.py  
 ├── tools.py  
@@ -53,37 +26,27 @@ xmap_mcp/
 
 ---
 
-## 🛠 Requirements
+## Requirements
 
-- Python 3.8+  
-- Nmap installed  
-- OpenRouter API Key  
+- Python 3+
+- Nmap installed
+- OpenRouter API key
 
 ---
 
-## 🔧 Installation
+## Setup
 
-### Clone Repo
+### 1. Clone Project
 
-git clone https://github.com/vigneshcode06/xmap_mcp  
+git clone https://github.com/yourname/xmap_mcp.git  
 cd xmap_mcp  
 
-### Install Dependencies
+### 2. Install Python Library
 
 pip install requests  
 
-### Install Nmap
 
-Windows:  
-https://nmap.org/download.html  
-
-Linux:
-
-sudo apt install nmap  
-
----
-
-## 🛡 Protect API Key
+### 4. Protect API Key
 
 Create file:
 
@@ -96,13 +59,13 @@ __pycache__/
 
 ---
 
-## ▶ Run XMAP
+## Run Tool
 
 python ai_client.py  
 
 ---
 
-## 🧪 Example Commands
+## Example Commands
 
 scan scanme.nmap.org  
 fast scan scanme.nmap.org  
@@ -111,49 +74,20 @@ service scan scanme.nmap.org
 detect os of scanme.nmap.org  
 ping google.com  
 get open ports  
-hello bro  
+hello  
 
 ---
 
-## 🔧 Available Tools
+## Available Tools
 
-scan           - Basic scan  
-fast_scan      - Quick scan  
-full_scan      - All ports  
-service_scan   - Service detection  
-os_detect      - OS fingerprinting  
-ping_host      - Ping host  
-get_open_ports - List open ports  
-chat           - Normal chat  
-
----
-
-## 🧠 Why MCP?
-
-Before MCP:
-
-- Different AI models had different tool formats  
-- Large if/else logic  
-- Hard to scale  
-
-With MCP:
-
-- One standard protocol  
-- Clean routing  
-- Easy to add tools  
-- Model independent  
-
----
-
-## 🏗 Roadmap
-
-- Vulnerability scan module  
-- Exploit integration  
-- Report generator  
-- Web UI  
-- Local LLM support  
-
----
+scan  
+fast_scan  
+full_scan  
+service_scan  
+os_detect  
+ping_host  
+get_open_ports  
+chat  
 
 ## ⚠ Disclaimer
 
@@ -166,14 +100,3 @@ Do NOT scan targets without permission.
 
 Vignesh  
 Cybersecurity | AI Agents | DevOps | Automation  
-
----
-
-## ⭐ Support
-
-If you like this project:
-
-- Star the repo  
-- Fork it  
-- Build on it  
-
