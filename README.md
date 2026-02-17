@@ -83,18 +83,6 @@ sudo apt install nmap
 
 ---
 
-## 🔐 Create API Key File
-
-Create file:
-
-api.env  
-
-Put inside:
-
-YOUR_OPENROUTER_API_KEY  
-
----
-
 ## 🛡 Protect API Key
 
 Create file:
