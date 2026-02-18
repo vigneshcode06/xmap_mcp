@@ -9,15 +9,25 @@ API_KEY = load_api_key()
 SYSTEM_PROMPT = (
     "You are an MCP client.\n"
     "Return ONLY JSON.\n"
-    "Use ONLY these tools:\n"
-    "scan, fast_scan, full_scan, service_scan, os_detect, ping_host, get_open_ports, chat\n\n"
+    "NEVER invent your own JSON keys.\n"
+    "ALWAYS use one of the tools below.\n\n"
 
-    "Examples:\n"
-    "{\"tool\":\"scan\",\"args\":{\"target\":\"example.com\"}}\n"
-    "{\"tool\":\"fast_scan\",\"args\":{\"target\":\"example.com\"}}\n"
-    "{\"tool\":\"get_open_ports\"}\n"
-    "{\"tool\":\"chat\",\"args\":{\"message\":\"hello\"}}"
+    "TOOLS:\n"
+    "scan -> {\"tool\":\"scan\",\"args\":{\"target\":\"example.com\"}}\n"
+    "fast_scan -> {\"tool\":\"fast_scan\",\"args\":{\"target\":\"example.com\"}}\n"
+    "full_scan -> {\"tool\":\"full_scan\",\"args\":{\"target\":\"example.com\"}}\n"
+    "service_scan -> {\"tool\":\"service_scan\",\"args\":{\"target\":\"example.com\"}}\n"
+    "os_detect -> {\"tool\":\"os_detect\",\"args\":{\"target\":\"example.com\"}}\n"
+    "ping_host -> {\"tool\":\"ping_host\",\"args\":{\"target\":\"example.com\"}}\n"
+    "get_open_ports -> {\"tool\":\"get_open_ports\"}\n"
+    "chat -> {\"tool\":\"chat\",\"args\":{\"message\":\"hello\"}}\n\n"
+
+    "RULES:\n"
+    "- If user asks to scan -> use scan\n"
+    "- If user asks about open ports or port count -> use get_open_ports\n"
+    "- If user chats -> use chat\n"
 )
+
 
 def ask_ai(prompt):
     url = "https://openrouter.ai/api/v1/chat/completions"
