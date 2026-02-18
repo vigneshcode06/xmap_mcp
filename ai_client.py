@@ -1,10 +1,23 @@
-import requests, json, subprocess
+import requests, subprocess, json
 
 def load_api_key():
     with open("api.env") as f:
         return f.read().strip()
 
 API_KEY = load_api_key()
+
+SYSTEM_PROMPT = (
+    "You are an MCP client.\n"
+    "Return ONLY JSON.\n"
+    "Use ONLY these tools:\n"
+    "scan, fast_scan, full_scan, service_scan, os_detect, ping_host, get_open_ports, chat\n\n"
+
+    "Examples:\n"
+    "{\"tool\":\"scan\",\"args\":{\"target\":\"example.com\"}}\n"
+    "{\"tool\":\"fast_scan\",\"args\":{\"target\":\"example.com\"}}\n"
+    "{\"tool\":\"get_open_ports\"}\n"
+    "{\"tool\":\"chat\",\"args\":{\"message\":\"hello\"}}"
+)
 
 def ask_ai(prompt):
     url = "https://openrouter.ai/api/v1/chat/completions"
@@ -13,17 +26,10 @@ def ask_ai(prompt):
         "Content-Type": "application/json"
     }
 
-    system_prompt = (
-        "Return ONLY JSON.\n"
-        "For scanning: {\"tool\":\"scan\",\"args\":{\"target\":\"example.com\"}}\n"
-        "For open ports: {\"tool\":\"get_open_ports\"}\n"
-        "For normal chat: {\"tool\":\"chat\",\"args\":{\"message\":\"hello\"}}"
-    )
-
     data = {
         "model": "openai/gpt-3.5-turbo",
         "messages": [
-            {"role": "system", "content": system_prompt},
+            {"role": "system", "content": SYSTEM_PROMPT},
             {"role": "user", "content": prompt}
         ]
     }
@@ -39,7 +45,7 @@ def main():
         text=True
     )
 
-    print("XMAP MCP CHAT MODE")
+    print("\n🔥 XMAP MCP CHAT MODE 🔥\n")
 
     while True:
         user = input("XMAP> ")
