@@ -1,16 +1,17 @@
-
 import json
 from tools import scan, get_open_ports
 
+from tools import scan, get_open_ports, chat
+
 TOOLS = {
     "scan": scan,
-    "get_open_ports": get_open_ports
+    "get_open_ports": get_open_ports,
+    "chat": chat
 }
 
-print("MCP Server Running...")
 
 while True:
-    msg = input()   # receives JSON from client
+    msg = input()
 
     try:
         data = json.loads(msg)
@@ -19,9 +20,11 @@ while True:
 
         if tool in TOOLS:
             result = TOOLS[tool](**args)
-            print(json.dumps({"result": result}))
+            print(json.dumps({"result": result}), flush=True)
         else:
-            print(json.dumps({"error": "Unknown tool"}))
+            print(json.dumps({"error": "Unknown tool"}), flush=True)
 
     except Exception as e:
-        print(json.dumps({"error": str(e)}))
+        print(json.dumps({"error": str(e)}), flush=True)
+
+

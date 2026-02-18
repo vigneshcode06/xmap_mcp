@@ -25,3 +25,6 @@ def get_open_ports():
             ports.append(line.split("/")[0])
 
     return f"Open ports: {', '.join(ports)}"
+
+def chat(message):
+    return f"Chat: {message}"

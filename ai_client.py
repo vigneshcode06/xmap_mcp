@@ -13,13 +13,17 @@ def ask_ai(prompt):
         "Content-Type": "application/json"
     }
 
+    system_prompt = (
+        "Return ONLY JSON.\n"
+        "For scanning: {\"tool\":\"scan\",\"args\":{\"target\":\"example.com\"}}\n"
+        "For open ports: {\"tool\":\"get_open_ports\"}\n"
+        "For normal chat: {\"tool\":\"chat\",\"args\":{\"message\":\"hello\"}}"
+    )
+
     data = {
         "model": "openai/gpt-3.5-turbo",
         "messages": [
-            {"role": "system", "content":
-             "Return ONLY JSON like "
-             '{"tool":"scan","args":{"target":"example.com"}} '
-             'or {"tool":"get_open_ports"}'},
+            {"role": "system", "content": system_prompt},
             {"role": "user", "content": prompt}
         ]
     }
